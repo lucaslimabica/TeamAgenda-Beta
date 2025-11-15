@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@pipedrive/app-extensions-sdk": "^0.13.1"
+  }
+}
