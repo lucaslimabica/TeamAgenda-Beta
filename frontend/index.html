@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TeamAgenda — Homepage</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>TeamAgenda</h1>
+        <p>Access the unified calendar for your entire team!</p>
+
+        <button id="startBtn">Start</button>
+    </div>
+
+    <script type="module">
+        import AppExtensionsSDK from "@pipedrive/app-extensions-sdk";
+
+        const startBtn = document.getElementById("startBtn");
+
+        startBtn.addEventListener("click", async () => {
+            try {
+                // Initialize Pipedrive SDK
+                const sdk = await new AppExtensionsSDK().initialize();
+                
+                // Print on console for debugging
+                console.log("SDK Loaded:", sdk);
+
+                // FFor debugging: Get logged user info and print it (better context info later!!)
+                const user = await sdk.user.getUserInfo();
+                console.log("Logged User:", user);
+
+            } catch (error) {
+                console.error("SDK init failed:", error);
+                alert("Failed to initialize the Pipedrive SDK.");
+            }
+        });
+    </script>
+</body>
+</html>
