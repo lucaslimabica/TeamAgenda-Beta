@@ -3,16 +3,20 @@
 version: "3.7"
 
 services:
-  teamagenda:
+  teamagenda-beta:
     build: .
-    container_name: teamagenda
+    container_name: teamagenda-beta
     labels:
       - "traefik.enable=true"
 
-      # DOMAIN AND ENTRYPOINT CONFIGURATION
+      # Router
       - "traefik.http.routers.teamagenda-beta.rule=Host(`teamagenda.crmsolutions.pt`)"
       - "traefik.http.routers.teamagenda-beta.entrypoints=websecure"
       - "traefik.http.routers.teamagenda-beta.tls.certresolver=letsencrypt"
+
+      # Service
+      - "traefik.http.routers.teamagenda-beta.service=teamagenda-beta"
+      - "traefik.http.services.teamagenda-beta.loadbalancer.server.port=80"
 
     networks:
       - network_public
