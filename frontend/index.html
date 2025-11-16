@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TeamAgenda — Homepage</title>
+    <script src="https://cdn.jsdelivr.net/npm/@pipedrive/app-extensions-sdk@0/dist/index.umd.js"></script>
 </head>
 
 <body>
@@ -14,27 +15,34 @@
         <button id="startBtn">Start</button>
     </div>
 
-    <script type="module">
-        import AppExtensionsSDK from "@pipedrive/app-extensions-sdk";
-
+    <script>
+        // The main SDK object
+        const AppExtensionsSDK = window.AppExtensionsSDK;
+        // Initialize Pipedrive SDK
+        async function initializeAndSetup() {
+            let sdk;
+            try {
+                sdk = await new AppExtensionsSDK().initialize();
+                await sdk.execute(AppExtensionsSDK.Command.RESIZE, {
+                    // Setting initial size of the iframe
+                    width: 500,
+                    height: 300
+                });
+                console.log("SDK Loaded:", sdk);
+            } catch (error) {
+                console.error('Error at the Pipedrive SDK:', error);
+                alert('Error at the Pipedrive SDK initialization.');
+                return;
+            }
+            // For debugging: Get logged user info and print it (better context info later!!)
+            const user = await sdk.user.getUserInfo();
+            console.log("Logged User:", user);
+        }
+        
         const startBtn = document.getElementById("startBtn");
 
         startBtn.addEventListener("click", async () => {
-            try {
-                // Initialize Pipedrive SDK
-                const sdk = await new AppExtensionsSDK().initialize();
-                
-                // Print on console for debugging
-                console.log("SDK Loaded:", sdk);
-
-                // FFor debugging: Get logged user info and print it (better context info later!!)
-                const user = await sdk.user.getUserInfo();
-                console.log("Logged User:", user);
-
-            } catch (error) {
-                console.error("SDK init failed:", error);
-                alert("Failed to initialize the Pipedrive SDK.");
-            }
+            await initializeAndSetup();
         });
     </script>
 </body>
