@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  teamagenda:
+    build: .
+    container_name: teamagenda
+    labels:
+      - "traefik.enable=true"
+
+      # DOMAIN AND ENTRYPOINT CONFIGURATION
+      - "traefik.http.routers.teamagenda-beta.rule=Host(`teamagenda.crmsolutions.pt`)"
+      - "traefik.http.routers.teamagenda-beta.entrypoints=websecure"
+      - "traefik.http.routers.teamagenda-beta.tls.certresolver=letsencrypt"
+
+    networks:
+      - network_public
+
+networks:
+  network_public:
+    external: true
