@@ -1,3 +1,5 @@
+# For when you have to update the container after deploy, use this command: docker compose -f teamagenda-beta.yml up -d --build
+# Make sure you are in the folder where the teamagenda-beta.yml file is located. 
 version: "3.7"
 
 services:
