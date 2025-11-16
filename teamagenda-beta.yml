@@ -2,19 +2,15 @@ version: "3.8"
 
 services:
   web:
-    image: teamagenda-beta
+    image: teamagenda-beta:v2
     deploy:
       labels:
         - "traefik.enable=true"
 
-        # Router: host + entrypoint
         - "traefik.http.routers.teamagenda-beta.rule=Host(`teamagenda.crmsolutions.pt`)"
         - "traefik.http.routers.teamagenda-beta.entrypoints=websecure"
         - "traefik.http.routers.teamagenda-beta.tls=true"
 
-        # - "traefik.http.routers.teamagenda-beta.tls.certresolver=letsencrypt"
-
-        # Service
         - "traefik.http.routers.teamagenda-beta.service=teamagenda-beta"
         - "traefik.http.services.teamagenda-beta.loadbalancer.server.port=80"
 
