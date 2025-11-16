@@ -1,22 +1,22 @@
-# For when you have to update the container after deploy, use this command: docker compose -f teamagenda-beta.yml up -d --build
-# Make sure you are in the folder where the teamagenda-beta.yml file is located. 
-version: "3.7"
+version: "3.8"
 
 services:
-  teamagenda-beta:
-    build: .
-    container_name: teamagenda-beta
-    labels:
-      - "traefik.enable=true"
+  web:
+    image: teamagenda-beta
+    deploy:
+      labels:
+        - "traefik.enable=true"
 
-      # Router
-      - "traefik.http.routers.teamagenda-beta.rule=Host(`teamagenda.crmsolutions.pt`)"
-      - "traefik.http.routers.teamagenda-beta.entrypoints=websecure"
-      - "traefik.http.routers.teamagenda-beta.tls.certresolver=letsencrypt"
+        # Router: host + entrypoint
+        - "traefik.http.routers.teamagenda-beta.rule=Host(`teamagenda.crmsolutions.pt`)"
+        - "traefik.http.routers.teamagenda-beta.entrypoints=websecure"
+        - "traefik.http.routers.teamagenda-beta.tls=true"
 
-      # Service
-      - "traefik.http.routers.teamagenda-beta.service=teamagenda-beta"
-      - "traefik.http.services.teamagenda-beta.loadbalancer.server.port=80"
+        # - "traefik.http.routers.teamagenda-beta.tls.certresolver=letsencrypt"
+
+        # Service
+        - "traefik.http.routers.teamagenda-beta.service=teamagenda-beta"
+        - "traefik.http.services.teamagenda-beta.loadbalancer.server.port=80"
 
     networks:
       - network_public
