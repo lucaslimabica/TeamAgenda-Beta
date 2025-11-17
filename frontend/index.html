@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,9 +11,49 @@
 <body>
     <div class="container">
         <h1>TeamAgenda</h1>
-        <p>Access the unified calendar for your entire team!</p>
+        <p>O seu único calendário para toda a equipa e todos os eventos.</p>
 
-        <button id="startBtn">Start</button>
+        <!-- VIEW 1: LOGIN -->
+        <div id="authView" class="card">
+            <h2>Login</h2>
+            <p>
+                Demonstração alpha
+            </p>
+            <form id="loginForm">
+                <label for="email">Email</label>
+                <input id="email" type="email" required placeholder="joao@clinicas.pt" />
+
+                <label for="password">Password</label>
+                <input id="password" type="password" required placeholder="••••••••" />
+
+                <button id="loginBtn" type="submit">Entrar</button>
+            </form>
+            <div id="authStatus" class="status"></div>
+        </div>
+
+        <!-- VIEW 2: CALENDAR -->
+        <div id="calendarView" class="card hidden">
+            <div class="header-row">
+                <div>
+                    <div style="font-size:14px; font-weight:600;">
+                        Team calendar
+                    </div>
+                    <div style="font-size:12px; color:#6b7280;">
+                        Logged as: <span id="currentUserName">–</span>
+                    </div>
+                </div>
+                <div style="display:flex; gap:6px;">
+                    <button id="refreshBtn" type="button">Refresh</button>
+                    <button id="logoutBtn" type="button">Logout</button>
+                </div>
+            </div>
+
+            <div id="calendarStatus" class="status"></div>
+
+            <div class="events-list" id="eventsList">
+                <!-- Events injected here -->
+            </div>
+        </div>
     </div>
 
     <script>
