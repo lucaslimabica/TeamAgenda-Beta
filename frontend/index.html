@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TeamAgenda — Homepage</title>
-    <script src="https://cdn.jsdelivr.net/npm/@pipedrive/app-extensions-sdk@0/dist/index.umd.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@pipedrive/app-extensions-sdk@0/dist/index.umd.js"></script> -->
+    <script src="../backend/main.js" defer></script>
     <link rel="stylesheet" href="./styles.css">
 </head>
 
@@ -36,15 +37,15 @@
             <div class="header-row">
                 <div>
                     <div style="font-size:14px; font-weight:600;">
-                        Team calendar
+                        TeamAgenda
                     </div>
                     <div style="font-size:12px; color:#6b7280;">
-                        Logged as: <span id="currentUserName">–</span>
+                        Olá <span id="currentUserName">João</span>
                     </div>
                 </div>
-                <div style="display:flex; gap:6px;">
+                <div id="actionButtons" style="display:flex; gap:6px;">
                     <button id="refreshBtn" type="button">Refresh</button>
-                    <button id="logoutBtn" type="button">Logout</button>
+                    <button id="createEvent" type="button">Agendar</button>
                 </div>
             </div>
 
@@ -55,36 +56,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-        // The main SDK object
-        const AppExtensionsSDK = window.AppExtensionsSDK;
-        // Initialize Pipedrive SDK
-        async function initializeAndSetup() {
-            let sdk;
-            try {
-                sdk = await new AppExtensionsSDK().initialize();
-                await sdk.execute(AppExtensionsSDK.Command.RESIZE, {
-                    // Setting initial size of the iframe
-                    width: 500,
-                    height: 300
-                });
-                console.log("SDK Loaded:", sdk);
-            } catch (error) {
-                console.error('Error at the Pipedrive SDK:', error);
-                alert('Error at the Pipedrive SDK initialization.');
-                return;
-            }
-            // For debugging: Get logged user info and print it (better context info later!!)
-            const user = await sdk.user.getUserInfo();
-            console.log("Logged User:", user);
-        }
-        
-        const startBtn = document.getElementById("startBtn");
-
-        startBtn.addEventListener("click", async () => {
-            await initializeAndSetup();
-        });
-    </script>
 </body>
 </html>
