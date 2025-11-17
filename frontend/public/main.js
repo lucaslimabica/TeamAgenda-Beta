@@ -1,20 +1,16 @@
 // =======================
 // PIPEDRIVE SDK SETUP
 // =======================
-const AppExtensionsSDK = window.AppExtensionsSDK;
-let sdk = null;
+import AppExtensionsSDK from '@pipedrive/app-extensions-sdk';
 let loggedUser = null;
 
 async function initPipedriveSDK() {
     try {
         sdk = await new AppExtensionsSDK().initialize();
         // Define o tamanho inicial do iframe
-        await sdk.execute(AppExtensionsSDK.Command.RESIZE, {
-            width: 500,
-            height: 450
-        });
-        loggedUser = await sdk.user.getUserInfo();
-        console.log("SDK Loaded. Logged user:", loggedUser);
+        await sdk.execute(Command.RESIZE, { height: 600, width: 600 });
+        //loggedUser = await sdk.user.getUserInfo();
+        console.log("SDK Loaded."); //Logged user:", loggedUser);
     } catch (error) {
         console.error("Error at the Pipedrive SDK:", error);
         // Aqui é normal falhar se estiveres a testar fora do Pipedrive.
