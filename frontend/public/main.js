@@ -20,7 +20,6 @@ async function initPipedriveSDK() {
         // Aqui é normal falhar se estiveres a testar fora do Pipedrive.
     }
 }
-initPipedriveSDK();
 
 // =======================
 // APP LOGIC
@@ -41,6 +40,9 @@ function showCalendarView() {
 
 if (loginBtn) {
     loginBtn.addEventListener("click", (event) => {
+        // Pipedrive test
+        initPipedriveSDK();
+        console.log("Login button clicked");
         // doesn-t allow form submission refresh the page
         event.preventDefault();
 
