@@ -5,11 +5,20 @@ services:
     image: teamagenda-beta:v2
     deploy:
       labels:
-        - traefik.enable=true
-        - traefik.http.routers.teamagenda-beta.rule=Host(`pipedrive-app.liberica.pt`)
-        - traefik.http.routers.teamagenda-beta.entrypoints=websecure
-        - traefik.http.routers.teamagenda-beta.tls.certresolver=letsencryptresolver
-        - traefik.http.services.teamagenda-beta.loadbalancer.server.port=80
+        - "traefik.enable=true"
+        - "traefik.docker.network=network_public"
+
+        # Router
+        - "traefik.http.routers.teamagenda-beta.rule=Host(`pipedrive-app.liberica.pt`)"
+        - "traefik.http.routers.teamagenda-beta.entrypoints=websecure"
+        - "traefik.http.routers.teamagenda-beta.tls=true"
+
+        # Service
+        - "traefik.http.routers.teamagenda-beta.service=teamagenda-beta"
+        - "traefik.http.services.teamagenda-beta.loadbalancer.server.port=80"
+
+    networks:
+      - network_public
 
 networks:
   network_public:
