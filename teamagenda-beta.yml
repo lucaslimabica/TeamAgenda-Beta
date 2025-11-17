@@ -7,7 +7,7 @@ services:
       labels:
         - "traefik.enable=true"
 
-        - "traefik.http.routers.teamagenda-beta.rule=Host(`teamagenda.liberica.pt`)"
+        - "traefik.http.routers.teamagenda-beta.rule=Host(`pipedrive-app.liberica.pt`)"
         - "traefik.http.routers.teamagenda-beta.entrypoints=websecure"
         - "traefik.http.routers.teamagenda-beta.tls=true"
 
