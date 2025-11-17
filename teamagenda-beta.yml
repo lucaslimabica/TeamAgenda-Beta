@@ -11,9 +11,6 @@ services:
         - traefik.http.routers.teamagenda-beta.tls.certresolver=letsencryptresolver
         - traefik.http.services.teamagenda-beta.loadbalancer.server.port=80
 
-    networks:
-      - network_public
-
 networks:
   network_public:
     external: true
