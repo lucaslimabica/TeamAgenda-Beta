@@ -79,9 +79,27 @@ function renderWeekGrid() {
     // header days of the week 
     WEEK_DAYS.forEach(day => { // Creates a div for each week day to show as header of the grid
         const dayHeader = document.createElement("div"); 
-        dayHeader.className = "week-cell week-header";
+        dayHeader.className = "week-cell week-header"; /*each week day header has this class*/
         dayHeader.textContent = day;
         grid.appendChild(dayHeader);
     });
+
+    // Colunm for hours
+    HOURS.forEach(hour => {
+        const hourCell = document.createElement("div")
+        hourCell.className = "week-cell week-day-cell"; /* first column: hour labels */
+        hourCell.textContent = hour;
+        grid.appendChild(hourCell);
+        
+        WEEK_DAYS.forEach(day => {
+            const cell = document.createElement("div");
+            cell.className = "week-cell week-day-cell"; /* grid cell for a specific day/hour */
+            cell.dataset.day = day;
+            cell.dataset.hour = hour;
+
+            grid.appendChild(cell)
+        })
+    });
+
     eventsList.appendChild(grid);
 }

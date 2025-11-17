@@ -55,11 +55,9 @@ button {
     background: #8002c9;
     color: white;
     width: 100%;
+    font-weight: bold;
 }
-#logoutBtn {
-    background: #e0e0e0;
-    color: #333;
-}
+
 
 .hidden {
     display: none;
@@ -69,6 +67,12 @@ button {
 #refreshBtn {
     background: #1e90ff;
     color: white;
+    font-weight: bold;
+}
+#createEvent {
+    background: #ec1e1ed3;
+    color: white;
+    font-weight: bold;
 }
 .header-row {
     display: flex;
@@ -78,3 +82,36 @@ button {
 }
 
 /* Events List */
+.events-list { /* The container for the list of events */ 
+    margin-top: 12px; /* margin before the border */
+    max-height: 500px;
+    overflow: auto; /* Scroll if too tall */
+    border-top: 1.5px solid #8002c9;
+}
+.week-grid { /* The header with weekdays labels */
+    display: grid;
+    grid-template-columns: 60px repeat(7, 1fr); /* Turns into columns. First column for time labels, then 7 equal columns for days */
+    font-size: 15px;
+    border-collapse: collapse; /* Ensures borders are shared */
+}
+.week-cell { /* Each cell/weekday in the header */
+    /* border: 1px solid #d1d5db; */ /* Optional cell borders, it too much maybe*/
+    padding: 6px;
+    text-align: center;
+    background: #f9fafb;
+}
+.week-hour-cell { /* hours colunm */
+    background: #f9fafb;
+    text-align: right;
+    padding-right: 8px;
+    color: #6b7280;
+    font-size: 11px;
+}
+
+/* cells */
+.week-day-cell {
+    cursor: pointer;
+}
+.week-day-cell:hover {
+    background: #eef2ff;
+}
