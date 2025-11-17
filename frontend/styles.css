@@ -6,7 +6,7 @@ body {
     background: #f5f7fa;
 }
 .container {
-    max-width: 480px;
+    max-width: 600px;
     margin: 0 auto;
     padding: 16px;
 }
@@ -55,11 +55,9 @@ button {
     background: #8002c9;
     color: white;
     width: 100%;
+    font-weight: bold;
 }
-#logoutBtn {
-    background: #e0e0e0;
-    color: #333;
-}
+
 
 .hidden {
     display: none;
@@ -69,6 +67,12 @@ button {
 #refreshBtn {
     background: #1e90ff;
     color: white;
+    font-weight: bold;
+}
+#createEvent {
+    background: #ec1e1ed3;
+    color: white;
+    font-weight: bold;
 }
 .header-row {
     display: flex;
@@ -76,43 +80,38 @@ button {
     align-items: center;
     gap: 8px;
 }
-.events-list {
-    margin-top: 10px;
-    max-height: 300px;
-    overflow-y: auto;
+
+/* Events List */
+.events-list { /* The container for the list of events */ 
+    margin-top: 12px; /* margin before the border */
+    max-height: 500px;
+    overflow: auto; /* Scroll if too tall */
+    border-top: 1.5px solid #8002c9;
 }
-.event-item {
-    border-bottom: 1px solid #eef0f3;
-    padding: 8px 0;
-    font-size: 13px;
+.week-grid { /* The header with weekdays labels */
+    display: grid;
+    grid-template-columns: 60px repeat(7, 1fr); /* Turns into columns. First column for time labels, then 7 equal columns for days */
+    font-size: 15px;
+    border-collapse: collapse; /* Ensures borders are shared */
 }
-.event-item:last-child {
-    border-bottom: none;
+.week-cell { /* Each cell/weekday in the header */
+    /* border: 1px solid #d1d5db; */ /* Optional cell borders, it too much maybe*/
+    padding: 6px;
+    text-align: center;
+    background: #f9fafb;
 }
-.event-title {
-    font-weight: 600;
-}
-.event-meta {
+.week-hour-cell { /* hours colunm */
+    background: #f9fafb;
+    text-align: right;
+    padding-right: 8px;
     color: #6b7280;
-    font-size: 12px;
-}
-.badge-owner {
-    display: inline-block;
-    background: #eef2ff;
-    color: #3730a3;
-    border-radius: 999px;
-    padding: 2px 8px;
     font-size: 11px;
-    margin-top: 2px;
 }
-.status {
-    margin-top: 8px;
-    font-size: 12px;
-    color: #6b7280;
+
+/* cells */
+.week-day-cell {
+    cursor: pointer;
 }
-.error {
-    color: #b91c1c;
-}
-.success {
-    color: #15803d;
+.week-day-cell:hover {
+    background: #eef2ff;
 }
