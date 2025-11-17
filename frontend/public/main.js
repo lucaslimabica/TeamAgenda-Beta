@@ -15,7 +15,7 @@ async function initPipedriveSDK() {
         sdk = await new AppExtensionsSDKGlobal().initialize();
 
         // iFrame resize
-        await sdk.execute(Command.RESIZE, { height: 700, width: 800 });
+        await sdk.execute(AppExtensionsSDKGlobal.Command.RESIZE, { height: 700, width: 800 });
         //loggedUser = await sdk.user.getUserInfo();
         console.log("SDK Loaded."); //Logged user:", loggedUser);
     } catch (error) {
