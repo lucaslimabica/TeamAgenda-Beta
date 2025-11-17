@@ -6,7 +6,7 @@ body {
     background: #f5f7fa;
 }
 .container {
-    max-width: 480px;
+    max-width: 600px;
     margin: 0 auto;
     padding: 16px;
 }
@@ -76,43 +76,5 @@ button {
     align-items: center;
     gap: 8px;
 }
-.events-list {
-    margin-top: 10px;
-    max-height: 300px;
-    overflow-y: auto;
-}
-.event-item {
-    border-bottom: 1px solid #eef0f3;
-    padding: 8px 0;
-    font-size: 13px;
-}
-.event-item:last-child {
-    border-bottom: none;
-}
-.event-title {
-    font-weight: 600;
-}
-.event-meta {
-    color: #6b7280;
-    font-size: 12px;
-}
-.badge-owner {
-    display: inline-block;
-    background: #eef2ff;
-    color: #3730a3;
-    border-radius: 999px;
-    padding: 2px 8px;
-    font-size: 11px;
-    margin-top: 2px;
-}
-.status {
-    margin-top: 8px;
-    font-size: 12px;
-    color: #6b7280;
-}
-.error {
-    color: #b91c1c;
-}
-.success {
-    color: #15803d;
-}
+
+/* Events List */

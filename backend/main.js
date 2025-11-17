@@ -25,6 +25,7 @@
 // =======================
 // APP LOGIC
 // =======================
+// Elements for login logic
 const authView = document.getElementById("authView");
 const calendarView = document.getElementById("calendarView");
 const currentUser = document.getElementById("email");
@@ -49,5 +50,38 @@ if (loginBtn) {
             // span has .textContent
             currentUserName.textContent = currentUser.value || "João";
         }
+
+        // Write the day of the week grid
+        renderWeekGrid();
     });
+}
+
+// Inserting events
+const eventsList = document.getElementById("eventsList");
+const HOURS = [ // work hours array
+    "08:00", "09:00", "10:00", "11:00", "12:00",
+    "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"
+];
+const WEEK_DAYS = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"];
+
+function renderWeekGrid() {
+    if (!eventsList) return;
+    // Clear existing content
+    eventsList.innerHTML = "";
+    const grid = document.createElement("div");
+    grid.className = "week-grid";
+
+    // Create header row
+    const emptyHeader = document.createElement("div");
+    emptyHeader.className = "week-cell week-header";
+    grid.appendChild(emptyHeader);
+
+    // header days of the week 
+    WEEK_DAYS.forEach(day => { // Creates a div for each week day to show as header of the grid
+        const dayHeader = document.createElement("div"); 
+        dayHeader.className = "week-cell week-header";
+        dayHeader.textContent = day;
+        grid.appendChild(dayHeader);
+    });
+    eventsList.appendChild(grid);
 }
